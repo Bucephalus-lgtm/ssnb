@@ -23,10 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRoutes = require('./routes/index');
 const about = require('./routes/about');
 const contact = require('./routes/contacts');
+const teacher = require('./routes/teachers');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
 app.use('/contacts', contact);
+app.use('/teachers', teacher);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
