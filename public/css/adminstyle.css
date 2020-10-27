@@ -1,0 +1,64 @@
+.sorting tr:not(.home) {
+    cursor: pointer;
+}
+
+.ui-state-hightlight {
+    border: 1px dashed #ccc;
+}
+
+#imgPreview {
+    margin: 20px;
+}
+
+#noimage{
+    width: 100px;
+    height: 100px;
+}
+
+ul.gallery {
+    padding: 0;
+}
+
+ul.gallery li:first-child {
+    margin-left: 0;
+}
+
+ul.gallery li {
+    margin: 20px;
+    display: inline-block;
+    list-style: none;
+}
+
+table.alignmiddle td {
+    vertical-align: middle !important;
+}
+
+.navbar{
+    background-color: #4b0505 !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: rgb(221, 231, 193);
+}
+
+.navbar-inverse .navbar-brand {
+    color: rgb(221, 231, 193);
+}
+
+body{
+    background: url('../images/bg_1.png') no-repeat center/cover;
+}
+
+.logo{
+    border-radius: 50%;
+    width: 60px;
+    float: left;
+    height: 60px;
+    padding: 2px 2px;
+    margin: 0 10px;
+}
+
+
+.navbar-right{
+    font-size: 1.6rem;
+}

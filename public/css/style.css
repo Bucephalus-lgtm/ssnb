@@ -1,0 +1,158 @@
+body{
+    background: #b1d7ee;
+}
+
+img.pimage {
+    width: 150px;
+}
+
+a.pa {
+    display: inline-block;
+    height: 160px;
+}
+
+.row.products .p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+img.spi {
+    width: 100%;
+}
+
+ul.gallery li {
+    display: inline-block;
+    margin: 20px;
+    list-style: none;
+}
+
+img.cpi {
+    width: 100px;
+}
+
+table.alignmiddle td {
+    vertical-align: middle !important;
+}
+
+.pp {
+    position: absolute;
+    left: -3000px;
+}
+
+.ajaxbg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255, .8);
+    z-index: 2;
+    display: none;
+}
+
+.ajaxinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.navbar{
+    background-color: #033a28 !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: rgb(221, 231, 193);
+}
+
+.navbar-inverse .navbar-brand {
+    color: rgb(221, 231, 193);
+}
+
+.logo{
+    border-radius: 50%;
+    width: 60px;
+    float: left;
+    height: 60px;
+    padding: 2px 2px;
+    margin: 0 10px;
+}
+
+.navbar-right{
+    font-size: 1.6rem;
+}
+
+
+.list-group-item{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #e536f4;
+}
+
+  a{
+      text-decoration: none;
+      color: black;
+  }
+
+  #footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    text-align: center;
+ }
+
+.faculty-image{
+    width: 150px;
+    height: 150px;
+    margin: 50px 0px;
+
+}
+
+.principal-image{
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    display: block;
+}
+
+.details{
+    list-style: none;
+}
+
+.jumbotron {
+    background-color: #f8b4e7 !important;
+}
+
+.bg-pic{
+    width: 100%;
+    height: 100%;
+}
+
+.school-image{
+    width: 1000px;
+    height: 250px;
+}
+
+.about-img{
+    width: 362px;
+    height: 299px;
+}
+
+.logo_name{
+    color:  rgb(221, 231, 193);
+    font-size: 1.8rem;
+    padding: 10px;
+    margin-top: 20px !important;
+}
