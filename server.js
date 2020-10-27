@@ -21,8 +21,10 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 const indexRoutes = require('./routes/index');
+const about = require('./routes/about');
 
 app.use('/', indexRoutes);
+app.use('/about', about);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
