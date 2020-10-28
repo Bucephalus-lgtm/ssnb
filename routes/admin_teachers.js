@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mkdirp = require('mkdirp');
-const fs = require('fs-extra');
+// const fs = require('fs-extra');
 
 const Faculty = require('../models/faculty');
 
@@ -79,7 +79,7 @@ router.post('/add-teacher', function (req, res) {
                         return console.log(err);
                     });
 
-                    if (imageFile != "") {
+                    if (imageFile != '') {
                         const facultyImage = req.files.image;
                         const path = 'public/faculty_images/' + faculty._id + '/' + imageFile;
 
