@@ -1,0 +1,56 @@
+<%- include('../layouts/header') %>
+
+
+<h1>Add a chapter</h1>
+<a href="/resources" class="btn btn-success">Back to all resources</a>
+
+<form method="POST" action="/admin/teachers/add-chapter" enctype="multipart/form-data">
+
+    <div class="form-group my-10">
+        <select class="form-control" name="class_">
+            <option value="class 1">Class 1</option>
+            <option value="class 2">Class 2</option>
+            <option value="class 3">Class 3</option>
+            <option value="class 4">Class 4</option>
+            <option value="class 5">Class 5</option>
+            <option value="class 6">Class 6</option>
+            <option value="class 7">Class 7</option>
+            <option value="class 8">Class 8</option>
+            <option value="class 9">Class 9</option>
+            <option value="class 10">Class 10</option>
+        </select>
+    </div>
+
+    <div class="form-group my-10">
+        <select class="form-control" name="sub_no">
+            <option value="subject 1">Subject 1</option>
+            <option value="subject 2">Subject 2</option>
+            <option value="subject 3">Subject 3</option>
+            <option value="subject 4">Subject 4</option>
+            <option value="subject 5">Subject 5</option>
+            <option value="subject 6">Subject 6</option>
+            <option value="subject 7">Subject 7</option>
+            <option value="subject 8">Subject 8</option>
+        </select>
+    </div>
+
+    <div class="form-group my-10">
+        <select class="form-control" name="sub_name">
+            <option value="MIL">MIL</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="Social Science">Social Science</option>
+            <option value="English Grammer">English Grammer</option>
+            <option value="Advance Mathematics">Advance Mathematics</option>
+        </select>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+
+</form>
+
+<%- include('../layouts/footer') %>

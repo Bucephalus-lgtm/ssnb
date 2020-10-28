@@ -1,0 +1,41 @@
+<%- include('../layouts/header') %>
+
+<h1>All Chapter's Here</h1>
+
+<div class="container">
+
+    <h3><%= (cl_name).toUpperCase() %>'s <%= sub_name %> </h3>
+
+    <div class="table-responsive">
+        <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">Chapter</th>
+                    <th scope="col">Read Here</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% arrBig.forEach(function(chap){ %>
+                <tr>
+                    <td><%= chap.chapter_name %> </td>
+                    <% if(chap.image) { %>
+                    <td>
+                        <a href="/resources/<%= cl_name %>/<%= sub_name %>/<%= chap.chapter_no %>/<%= chap.image %>">
+                            Read Here </a>
+                    </td>
+                    <% } else{ %>
+                    <td>
+                        <a href="/resources/<%= cl_name %>/<%= sub_name %>/<%= chap.chapter_no %>/<%= chap.file %>">
+                            Read Here </a>
+                    </td>
+                    <% } %>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../layouts/footer') %>

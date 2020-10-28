@@ -1,0 +1,69 @@
+<%- include('../layouts/header') %>
+
+<h1>Add Resources Here</h1>
+
+<form method="POST" action="/admin/resources/add-resource" enctype="multipart/form-data">
+
+    <div class="form-group my-10">
+        <label for="">Choose Class</label>
+        <select class="form-control" name="class_name">
+            <option value="class 1">Class One</option>
+            <option value="class 2">Class Two</option>
+            <option value="class 3">Class Three</option>
+            <option value="class 4">Class Four</option>
+            <option value="class 5">Class Five</option>
+            <option value="class 6">Class Six</option>
+            <option value="class 7">Class Seven</option>
+            <option value="class 8">Class Eight</option>
+            <option value="class 9">Class Nine</option>
+            <option value="class 10">Class Ten</option>
+        </select>
+    </div>
+
+    <!-- <div class="form-group">
+        <input type="hidden" class="form-control" name="class_slug" value="" placeholder="Class Slug">
+    </div> -->
+
+    <div class="form-group my-10">
+        <label for="">Choose Subject</label>
+        <select class="form-control" name="subject_name">
+            <option value="MIL">MIL</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="Social Science">Social Science</option>
+            <option value="English Grammer">English Grammer</option>
+            <option value="Advance Mathematics">Advance Mathematics</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="">Chapter No</label>
+        <input type="text" class="form-control" name="chapter_no" value="" placeholder="Chapter No">
+    </div>
+
+    <div class="form-group">
+        <label for="">Chapter Name</label>
+        <input type="text" class="form-control" name="chapter_name" value="" placeholder="Chapter Name">
+    </div>
+
+    <div class="form-group">
+        <label for="">Notes</label>
+        <input type="file" class="form-control" name="image">
+    </div>
+
+    <div class="form-group">
+        <label for="">File Name</label>
+        <input type="text" class="form-control" name="fileName" placeholder="File Name">
+    </div>
+
+    <div class="form-group">
+        <label for="">File</label>
+        <input type="file" class="form-control" name="file">
+    </div>
+
+    <button class="btn btn-success">Submit</button>
+</form>
+
+<%- include('../layouts/footer') %>

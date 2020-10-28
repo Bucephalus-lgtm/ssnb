@@ -1,0 +1,28 @@
+<%- include('../layouts/header') %>
+
+<h1>Read here</h1>
+
+<h1><%= (cl_name).toUpperCase() %> </h1>
+
+<div class="table-responsive">
+    <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% uniqueSub.forEach(function(sub){ %>
+            <tr>
+                <td>
+                    <a href="/resources/<%= cl_name %>/<%= sub %>"> <%= sub %> </a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../layouts/footer') %>

@@ -85,6 +85,8 @@ const teacher = require('./routes/teachers');
 const adminTeacher = require('./routes/admin_teachers');
 const notice = require('./routes/notices');
 const adminNotices = require('./routes/admin_notices');
+const adminResources = require('./routes/admin_resources');
+const resources = require('./routes/resources');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
@@ -93,6 +95,8 @@ app.use('/teachers', teacher);
 app.use('/admin/teachers', adminTeacher);
 app.use('/notices', notice);
 app.use('/admin/notices', adminNotices);
+app.use('/admin/resources', adminResources);
+app.use('/resources', resources);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
