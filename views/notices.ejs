@@ -1,0 +1,34 @@
+<%- include('layouts/header') %>
+
+<h3>Notice</h3>
+
+<!-- <div>
+    <object
+      data='/notices/5f99391328c24e081ce11937/3.pdf'
+      type="application/pdf"
+      width="500px"
+      height="500px"
+    >
+
+      <iframe
+        src='/notices/5f99391328c24e081ce11937/3.pdf'
+        width="500px"
+        height="500px"
+      >
+      <p>This browser does not support PDF!</p>
+      </iframe>
+
+    </object>
+  </div> -->
+
+  <div class="container" style="padding: 20px;">
+      <embed src="/notices/5f99391328c24e081ce11937/3.pdf" type="application/pdf" width="100%" height="600px">
+  </div>
+
+<% notices.forEach(function(notice) { %>
+<h4><%= notice.title %> </h4>
+
+<a href="/notices/5f99391328c24e081ce11937/3.pdf">Read</a>
+<%  }); %>
+
+<%- include('layouts/footer') %>
