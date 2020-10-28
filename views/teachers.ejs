@@ -5,4 +5,25 @@
     <img src="/images/ssnb4.jpg" alt=""> <br>
 </div>
 
+
+<div class="container jumbotron">
+    <% faculties.forEach(function(faculty){ %>
+    <div class="col-xs-12 col-md-4">
+
+
+        <% if(faculty.full_name == 'Gopal Bayan'){ %>
+        <img class="principal-image" src="/faculty_images/<%= faculty._id %>/<%= faculty.image %>">
+        <% } else { %>
+        <img class="faculty-image" src="/faculty_images/<%= faculty._id %>/<%= faculty.image %>">
+        <% } %>
+
+        <h3><%= faculty.full_name %></h3>
+        <h3><%= faculty.position %> </h3>
+        <a class="btn btn-info" href="/teachers/details/<%= faculty.slug %> ">View More</a>
+    </div>
+    <% }); %>
+
+
+</div>
+
 <%- include('layouts/footer') %>

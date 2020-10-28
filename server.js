@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
+const bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 // const url = 'mongodb://localhost/ssnb';
 const url = 'mongodb+srv://amare:amare@mycluster.0e2la.gcp.mongodb.net/ssnb?retryWrites=true&w=majority';
@@ -20,15 +23,72 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+
+app.use(expressValidator({
+    errorFormatter: function (param, msg, value) {
+        var namespace = param.split('.')
+            , root = namespace.shift()
+            , formParam = root;
+
+        while (namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
+    },
+    customValidators: {
+        isImage: function (value, filename) {
+            var extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.jpg':
+                    return '.jpg';
+                case '.jpeg':
+                    return '.jpeg';
+                case '.png':
+                    return '.png';
+                case '':
+                    return '.jpg';
+                default:
+                    return false;
+            }
+        },
+
+        isDocument: function (value, filename) {
+            const extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.pdf':
+                    return '.pdf';
+                case '.docx':
+                    return '.docx'
+                case '':
+                    return '.pdf';    
+                default:
+                    return false;
+            }
+        }
+    }
+}));
+
+
+app.use(fileUpload());
+
 const indexRoutes = require('./routes/index');
 const about = require('./routes/about');
 const contact = require('./routes/contacts');
 const teacher = require('./routes/teachers');
+const adminTeacher = require('./routes/admin_teachers');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
 app.use('/contacts', contact);
 app.use('/teachers', teacher);
+app.use('/admin/teachers', adminTeacher);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

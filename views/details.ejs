@@ -1,0 +1,27 @@
+<%- include('layouts/header') %>
+
+<div class="container">
+    <a href="/">Go Back</a>
+    <h1><%= faculties.full_name %>'s Details</h1>
+
+    <br>
+
+    <ul class="details row">
+        <li><strong>Full Name: </strong> <%= faculties.full_name %> </li>
+
+        <% if(faculties.full_name == 'Gopal Bayan'){ %>
+            <li><img class="principal-image" src="/faculty_images/<%= faculties._id %>/<%= faculties.image %>"></li>
+        <% } else { %>
+            <li><img class="faculty-image" src="/faculty_images/<%= faculties._id %>/<%= faculties.image %>"></li>
+        <% } %>
+
+
+
+        <li><strong>Educational Qualification: </strong> <%= faculties.qualification %></li>
+        <li><strong>Contact Number: </strong> <%= faculties.contact_no %></li>
+        <li><strong>Position: </strong> <%= faculties.position %></li>
+        <li><strong>Experience: </strong> <%= faculties.experience %></li>
+    </ul>
+</div>
+
+<%- include('layouts/footer') %>

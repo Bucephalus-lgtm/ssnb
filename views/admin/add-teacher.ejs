@@ -1,0 +1,45 @@
+<%- include('../layouts/header') %>
+
+
+<h1>Add Teacher</h1>
+<a href="/teachers" class="btn btn-success">Back to Teachers' List</a>
+
+<form method="POST" action="/admin/teachers/add-teacher" enctype="multipart/form-data">
+
+    <div class="form-group my-10">
+        <label>Full Name</label>
+        <input type="text" class="form-control" name="full_name" value="<%= full_name  %>"  placeholder="Full Name">
+    </div>
+
+    <div class="form-group">
+        <label>Qualification</label>
+        <input type="text" class="form-control" name="qualification" value="<%= qualification %>"  placeholder="Qualification">
+    </div>
+
+    <div class="form-group">
+        <label>Contact Number</label>
+        <input type="text" class="form-control" name="contact_no" value="<%= contact_no %>"  placeholder="Contact Number">
+    </div>
+
+    <div class="form-group">
+        <label>Position</label>
+        <input type="text" class="form-control" name="position" value="<%= position %>"  placeholder="Position">
+    </div>
+
+    <div class="form-group">
+        <label>Experience</label>
+        <input type="text" class="form-control" name="experience" value="<%= experience %>"  placeholder="Experience">
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" class="form-control" name="image">
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+
+</form>
+
+<%- include('../layouts/footer') %>
