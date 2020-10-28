@@ -83,6 +83,7 @@ const about = require('./routes/about');
 const contact = require('./routes/contacts');
 const teacher = require('./routes/teachers');
 const adminTeacher = require('./routes/admin_teachers');
+const notice = require('./routes/notices');
 const adminNotices = require('./routes/admin_notices');
 
 app.use('/', indexRoutes);
@@ -90,6 +91,7 @@ app.use('/about', about);
 app.use('/contacts', contact);
 app.use('/teachers', teacher);
 app.use('/admin/teachers', adminTeacher);
+app.use('/notices', notice);
 app.use('/admin/notices', adminNotices);
 
 var PORT = process.env.PORT || 3000;

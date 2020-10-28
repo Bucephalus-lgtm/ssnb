@@ -10,14 +10,6 @@ const mkdirp = require('mkdirp');
 
 app.use(express.static('public'));
 
-router.get('/list', function (req, res) {
-    Notice.find({}).exec(function (err, notices) {
-        res.render('notices', {
-            notices: notices,
-        });
-    });
-});
-
 router.get('/add-notice', function (req, res) {
     res.render('admin/add-notice');
 });
@@ -68,7 +60,7 @@ router.post('/add-notice', function (req, res) {
                     }
 
                     // req.flash('success', 'Notice added!');
-                    res.redirect('/admin/notices/list');
+                    res.redirect('/notices/list');
 
                 });
             }

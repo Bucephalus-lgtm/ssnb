@@ -20,15 +20,18 @@
 
     </object>
   </div> -->
-
+<!-- 
   <div class="container" style="padding: 20px;">
       <embed src="/notices/5f99391328c24e081ce11937/3.pdf" type="application/pdf" width="100%" height="600px">
-  </div>
+  </div> -->
 
 <% notices.forEach(function(notice) { %>
-<h4><%= notice.title %> </h4>
 
-<a href="/notices/5f99391328c24e081ce11937/3.pdf">Read</a>
+<a href="/notices/<%= notice._id %>/<%= notice.title %>.pdf ">
+    <strong>
+        <%= notice.title %>
+    </strong>
+</a>
 <%  }); %>
 
 <%- include('layouts/footer') %>
