@@ -77,7 +77,6 @@ app.use(expressValidator({
     }
 }));
 
-
 app.use(fileUpload());
 
 const indexRoutes = require('./routes/index');
@@ -90,6 +89,7 @@ const adminNotices = require('./routes/admin_notices');
 const adminResources = require('./routes/admin_resources');
 const resources = require('./routes/resources');
 const email = require('./routes/email');
+const gallery = require('./routes/gallery');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
@@ -101,6 +101,7 @@ app.use('/admin/notices', adminNotices);
 app.use('/admin/resources', adminResources);
 app.use('/resources', resources);
 app.use('/mails', email);
+app.use('/gallery', gallery);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
