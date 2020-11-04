@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
+const expressValidator = require('express-validator');
 
 // const url = 'mongodb://localhost/ssnb';
 const url = 'mongodb+srv://amare:amare@mycluster.0e2la.gcp.mongodb.net/ssnb?retryWrites=true&w=majority';
@@ -16,6 +17,7 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
+const sendMail = require('./routes/mail');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -67,7 +69,7 @@ app.use(expressValidator({
                 case '.docx':
                     return '.docx'
                 case '':
-                    return '.pdf';    
+                    return '.pdf';
                 default:
                     return false;
             }
@@ -87,6 +89,7 @@ const notice = require('./routes/notices');
 const adminNotices = require('./routes/admin_notices');
 const adminResources = require('./routes/admin_resources');
 const resources = require('./routes/resources');
+const email = require('./routes/email');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
@@ -97,6 +100,7 @@ app.use('/notices', notice);
 app.use('/admin/notices', adminNotices);
 app.use('/admin/resources', adminResources);
 app.use('/resources', resources);
+app.use('/mails', email);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

@@ -99,7 +99,8 @@ router.post('/add-resource', function (req, res) {
                     return console.log(err);
                 });
             } 
-            else if (imageFile != '' && file == '') {
+            else 
+            if (imageFile != '' && file == '') {
                 const resourceImage = req.files.image;
                 console.log(resourceImage);
                 let path = 'public/resources/' + resource.class_name + '/' + resource.subjects[0].subject_name

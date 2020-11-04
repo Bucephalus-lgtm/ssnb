@@ -1,31 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>PDF Viewer</title>
-  </head>
-  <body>
+<html lang="en">
 
-    <!--
-      Place the following <div> element where you want the PDF to be displayed in your website. You can change the size using the width and height attributes.
-    -->
-    <div>
-      <object
-        data='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'
-        type="application/pdf"
-        width="500"
-        height="678"
-      >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FILE</title>
+  <script src="jquery-3.5.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-        <iframe
-          src='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'
-          width="500"
-          height="678"
-        >
-        <p>This browser does not support PDF!</p>
-        </iframe>
+<body>
 
-      </object>
+
+  <Select id='docOrImageSelector'>
+    <option value="">Choose Option</option>
+    <option value="image">Image</option>
+    <option value="document">Document</option>
+  </Select>
+
+
+  <div id="image" class="files" style="display:none">
+    <div class="form-group">
+      <label for="">Notes</label>
+      <input type="file" class="form-control" name="image">
+    </div>
+  </div>
+
+  <div id="document" class="files" style="display:none">
+    <div class="form-group">
+      <label for="">File Name</label>
+      <input type="text" class="form-control" name="fileName" placeholder="File Name">
     </div>
 
-  </body>
+    <div class="form-group">
+      <label for="">File</label>
+      <input type="file" class="form-control" name="file">
+    </div>
+  </div>
+
+
+</body>
+
+
+
 </html>
+
+<script type="text/javascript">
+  $(function () {
+    $('#docOrImageSelector').change(function () {
+      $('.files').hide();
+      $('#' + $(this).val()).show();
+    });
+  });
+</script>
