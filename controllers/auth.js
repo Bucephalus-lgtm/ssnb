@@ -27,7 +27,7 @@ module.exports.signup_post = (req, res) => {
     const { name, email, password } = req.body;
 
     const fullUrl = req.protocol + '://' + req.get('host');
-    console.log(fullUrl);
+    // console.log(fullUrl);
 
     User.findOne({ email }).exec((err, user) => {
         if (user) {
@@ -37,7 +37,7 @@ module.exports.signup_post = (req, res) => {
         }
 
         const token = jwt.sign({ name, email, password }, process.env.JWT_SECRET_KEY, { expiresIn: '10m' });
-        console.log(token);
+        // console.log(token);
 
         const mailOptions = {
             from: 'ssnbhelp@protonmail.com',
@@ -52,9 +52,12 @@ module.exports.signup_post = (req, res) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-                console.log(error);
+                // console.log(error);
+                return res.status(400).json({
+                    error: error
+                });
             } else {
-                console.log('Email sent: ' + info.response);
+                // console.log('Email sent: ' + info.response);
                 return res.status(400).json({
                     message: 'Please check your email id to activate your account!'
                 });
