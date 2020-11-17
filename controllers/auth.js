@@ -5,7 +5,8 @@ const router = require('../routes/auth');
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    // service: 'gmail',
     auth: {
         user: 'medicalreporthelp@gmail.com',
         pass: process.env.MAIL_PASSWORD
