@@ -90,6 +90,7 @@ const adminResources = require('./routes/admin_resources');
 const resources = require('./routes/resources');
 const email = require('./routes/email');
 const gallery = require('./routes/gallery');
+const user = require('./routes/auth');
 
 app.use('/', indexRoutes);
 app.use('/about', about);
@@ -102,6 +103,7 @@ app.use('/admin/resources', adminResources);
 app.use('/resources', resources);
 app.use('/mails', email);
 app.use('/gallery', gallery);
+app.use('/users', user);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

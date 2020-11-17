@@ -1,0 +1,30 @@
+<%- include('layouts/header') %>
+
+<h1>Sign Up</h1>
+
+<form method="POST" action="/users/signup">
+
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name">
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control"  placeholder="Password">
+    </div>
+    
+    <!-- <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" name="password2" class="form-control"  placeholder="Confirm Password">
+    </div> -->
+
+    <button type="submit" class="btn btn-default b-5">Sign Up</button>
+</form>
+
+<%- include('layouts/footer') %>
