@@ -1,29 +1,30 @@
 const express = require('express');
+const { requireAuth } = require('../middleware/auth');
 const router = express.Router();
-const expressJwt = require('express-jwt');
+// const expressJwt = require('express-jwt');
 // const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 
-const requireSignin = expressJwt({
-    secret: process.env.JWT_SECRET,
-    algorithms: ['HS256'],
-    userProperty: 'auth'
-});
+// const requireSignin = expressJwt({
+//     secret: process.env.JWT_SECRET,
+//     algorithms: ['HS256'],
+//     userProperty: 'auth'
+// });
 
-const isAuth = function (req, res, next) {
-    let user = req.profile && req.auth && req.profile._id == req.auth._id;
-    if (!user) {
-        return res.status(403).json({
-            error: 'Access denied'
-        });
-    }
-    console.log(req.profile);
-    console.log(req.auth);
-    next();
-}
+// const isAuth = function (req, res, next) {
+//     let user = req.profile && req.auth && req.profile._id == req.auth._id;
+//     if (!user) {
+//         return res.status(403).json({
+//             error: 'Access denied'
+//         });
+//     }
+//     console.log(req.profile);
+//     console.log(req.auth);
+//     next();
+// }
 
 const Resource = require('../models/resource');
 
-router.get('/', requireSignin, isAuth, function (req, res) {
+router.get('/', requireAuth, function (req, res) {
     res.send('resources here');
 });
 

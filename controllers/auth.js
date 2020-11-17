@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
 });
 
 const maxAge = 3 * 24 * 60 * 60;
-const createToken = role => {
-    return jwt.sign({ role }, process.env.JWT_SECRET_KEY, {
+const createToken = id => {
+    return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: maxAge
     });
 };
@@ -55,6 +55,9 @@ module.exports.signup_post = (req, res) => {
                 console.log(error);
             } else {
                 console.log('Email sent: ' + info.response);
+                return res.status(400).json({
+                    message: 'Please check your email id to activate your account!'
+                });
             }
         });
     });
@@ -99,7 +102,7 @@ module.exports.signin_post = async (req, res) => {
 
     try {
         const user = await User.signin(email, password);
-        const token = createToken(user.role);
+        const token = createToken(user._id);
         res.cookie('jwtauth', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(200).json({ user: user.role });
     }
@@ -113,76 +116,3 @@ module.exports.signout_get = (req, res) => {
     res.cookie('jwtauth', '', { maxAge: 1 });
     res.redirect('/users/signup');
 }
-
-
-// exports.signup = function (req, res) {
-//     console.log(req.body);
-//     const user = new User(req.body);
-//     user.save(function (err, user) {
-//         if (err) {
-//             return res.status(400).json({
-//                 error: errorHandler(err)
-//             });
-//         }
-//         user.salt = undefined,
-//             user.hashed_password = undefined
-//         res.json({
-//             user
-//         });
-//     });
-// }
-
-// exports.signin = (req, res) => {
-//     const { email, password } = req.body;
-//     User.findOne({ email }, (err, user) => {
-//         if (err || !user) {
-//             return res.status(400).json({
-//                 error: 'User with that email does not exist. Please signup'
-//             });
-//         }
-
-//         if (!user.authenticate(password)) {
-//             return res.status(401).json({
-//                 error: 'Email and password dont match'
-//             });
-//         }
-//         // generate a signed token with user id and secret
-//         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
-//         // persist the token as 't' in cookie with expiry date
-//         res.cookie('t', token, { expire: new Date() + 9999 });
-//         // return response with user and token to frontend client
-//         const { _id, name, email, role } = user;
-//         // return res.json({ token, user: { _id, email, name, role } });
-//         return res.redirect('/');
-//     });
-// }
-
-// exports.signout = function (req, res) {
-//     res.clearCookie('t');
-//     return res.json({ msg: 'You have been signed out successfuly!' })
-// }
-
-// exports.requireSignin = expressJwt({
-//     secret: process.env.JWT_SECRET,
-//     algorithms: ['HS256'],
-//     userProperty: 'auth'
-// });
-
-// exports.isAuth = (req, res, next) => {
-//     let user = req.profile && req.auth && req.profile._id == req.auth._id;
-//     if (!user) {
-//         return res.status(403).json({
-//             error: 'Access denied'
-//         });
-//     }
-//     next();
-// };
-
-// exports.isAdmin = function (req, res, next) {
-//     if (req.profile.role === 0) {
-//         res.status(403).json({
-//             error: 'Admin resource! Access denied!'
-//         });
-//     }
-//     next();
-// }

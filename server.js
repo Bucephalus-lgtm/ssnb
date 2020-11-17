@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
 
 // const url = 'mongodb://localhost/ssnb';
@@ -26,6 +27,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(bodyParser.json());
 
@@ -91,6 +93,9 @@ const resources = require('./routes/resources');
 const email = require('./routes/email');
 const gallery = require('./routes/gallery');
 const user = require('./routes/auth');
+const { checkUser } = require('./middleware/auth');
+
+app.get('*', checkUser);
 
 app.use('/', indexRoutes);
 app.use('/about', about);

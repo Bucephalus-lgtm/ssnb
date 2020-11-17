@@ -30,6 +30,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-inverse">
         <div class="container my-10">
             <div class="navbar-header">
@@ -47,7 +48,16 @@
 
             <div id="navbar" class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
+
+
+                    <% if(user){ %>
+                    <li> <a href="/">Welcome, <%= user.name %></a> </li>
+                    <% } else{ %>
                     <li><a href="/">Home</a></li>
+                    <% } %>
+
+
+
                     <li><a href="/teachers">Teachers</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Academics
