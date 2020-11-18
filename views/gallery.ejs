@@ -1,5 +1,288 @@
-<%- include('layouts/header') %>
+<html>
 
-<h3>Gallery</h3>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css2/pogo-slider.min.css" />
+    <link rel="stylesheet" href="/css2/style.css" />
+    <link rel="stylesheet" href="/css2/responsive.css" />
+    <link rel="stylesheet" href="/css2/custom.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <title>SSNB</title>
 
-<%- include('layouts/footer') %>
+    <style type="text/css">
+        .container.gallery-container {
+            background-color: #fff;
+            color: #35373a;
+            min-height: 100vh;
+            padding: 30px 50px;
+        }
+        
+        .gallery-container h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-family: 'Droid Sans', sans-serif;
+            font-weight: bold;
+        }
+        
+        .gallery-container p.page-description {
+            text-align: center;
+            margin: 25px auto;
+            font-size: 18px;
+            color: #999;
+        }
+        
+        .tz-gallery {
+            padding: 40px;
+        }
+        /* Override bootstrap column paddings */
+        
+        .tz-gallery .row>div {
+            padding: 2px;
+        }
+        
+        .tz-gallery .lightbox img {
+            width: 100%;
+            border-radius: 0;
+            position: relative;
+        }
+        
+        .tz-gallery .lightbox:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -13px;
+            margin-left: -13px;
+            opacity: 0;
+            color: #fff;
+            font-size: 26px;
+            font-family: 'Glyphicons Halflings';
+            content: '\e003';
+            pointer-events: none;
+            z-index: 9000;
+            transition: 0.4s;
+        }
+        
+        .tz-gallery .lightbox:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-color: rgba(46, 132, 206, 0.7);
+            content: '';
+            transition: 0.4s;
+        }
+        
+        .tz-gallery .lightbox:hover:after,
+        .tz-gallery .lightbox:hover:before {
+            opacity: 1;
+        }
+        
+        .baguetteBox-button {
+            background-color: transparent !important;
+        }
+        
+        @media(max-width: 768px) {
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="my-10">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <img class="logo" src="/images/ssnb.jpg" alt="logo">
+                <a class="logo_name" style="color: white; font-size: 1.6rem;" href="/">Sankardev Shishu Niketan, Bhawanipur</a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <% if(user){ %>
+                        <li> <a href="/">Welcome, <%= user.name %></a> </li>
+                        <% } else{ %>
+                            <li><a href="/">Home</a></li>
+                            <% } %>
+                                <li><a href="/teachers">Teachers</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Academics
+                        <span class="caret"></span>
+                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/resources">Resources</a></li>
+                                        <li><a href="/notices/list">Notices</a></li>
+                                        <li><a href="/fee-structure">Fee Structure & Uniform</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/gallery">Gallery</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/contacts">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container gallery-container">
+
+        <h1>Our Achievment Here</h1>
+
+        <p class="page-description text-center">Since 1996</p>
+
+        <div class="tz-gallery">
+
+            <div class="row">
+
+                <% for(var i=1; i<5; i++) { %>
+                    <div class="col-sm-6 col-md-4">
+
+                        <a class="lightbox" href="/images/ssnb<%= i %>.jpg">
+                            <img src="/images/ssnb<%= i %>.jpg" alt="Park">
+                        </a>
+
+                        <!-- <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg">
+                                <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/park.jpg" alt="Park">
+                            </a> -->
+                    </div>
+                    <% } %>
+                        <!-- <div class="col-sm-6 col-md-4">
+                    <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg">
+                        <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/tunnel.jpg" alt="Tunnel">
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg">
+                        <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/traffic.jpg" alt="Traffic">
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg">
+                        <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/rails.jpg" alt="Coast">
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <a class="lightbox" href="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg">
+                        <img src="https://raw.githubusercontent.com/LeshikJanz/libraries/master/Related%20images/Bootstrap%20example/coast.jpg" alt="Rails">
+                    </a>
+                </div> -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $('#docOrImageSelector').change(function() {
+                $('.files').hide();
+                $('#' + $(this).val()).show();
+            });
+        });
+    </script>
+
+
+    <footer class="footer-box">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog">
+                        <div class="full margin-bottom_30">
+                            <h4 style="color: aliceblue;"> <strong>Sankardev Shishu Niketan,
+                Bhawanipur</strong> </h4>
+                        </div>
+                        <div class="full white_fonts">
+                            <p>
+                                Established in year 1996, SANKARDEV SHISHU NIKETAN ,BHAWANIPUR is located in rural area of Assam state of India. In Haripur of Sarupeta block of Barpeta district. Area pincode is 781352.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog footer_menu white_fonts">
+                        <h3>External links</h3>
+                        <ul>
+                            <li><a href="http://vidyabharti.net/">&gt; Vidya Bharati</a></li>
+                            <li><a href="https://sebaonline.org/">&gt; SEBA, Assam</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog full white_fonts">
+                        <h3>Contact us</h3>
+                        <ul class="full">
+                            <li><img src="/img/i5.png"><span>Bhawanipur<br>Assam</span></li>
+                            <li><img src="/img/i6.png"><span>ssnbhelp@gmail.com</span></li>
+                            <li><img src="/img/i7.png"><span>+919365698129</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="footer_blog full white_fonts">
+                        <h3>We are here</h3>
+                        <ul class="full">
+                            <li>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.8016555374675!2d91.06374631498821!3d26.46212168332373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3759782d2909d1f3%3A0x468d4352b5862047!2sSankardev%20Sishu%20Niketan%20Bhawanipur!5e0!3m2!1sen!2sin!4v1603824026794!5m2!1sen!2sin"
+                                    width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="crp"> Copyright &COPY; 2020-21 | Er Bhargab Nath</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.pogo-slider.min.js"></script>
+    <script src="js/slider-index.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/custom.js"></script>
+
+</body>
+
+</html>

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/gallery-style.css" /> -->
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -32,10 +33,9 @@
 <body>
 
     <nav class="navbar navbar-inverse">
-        <div class="container my-10">
+        <div class="my-10">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -43,7 +43,7 @@
                 </button>
                 <img class="logo" src="/images/ssnb.jpg" alt="logo">
                 <!-- <a class="navbar-brand" href="index.html"><img src="/img/logo.png" alt="image"></a> -->
-                <a class="logo_name" href="/">Sankardev Shishu Niketan, Bhawanipur</a>
+                <a class="logo_name" style="color: white; font-size: 1.6rem;" href="/">Sankardev Shishu Niketan, Bhawanipur</a>
             </div>
 
             <div id="navbar" class="collapse navbar-collapse navbar-right">
@@ -51,37 +51,31 @@
 
 
                     <% if(user){ %>
-                    <li> <a href="/">Welcome, <%= user.name %></a> </li>
-                    <% } else{ %>
-                    <li><a href="/">Home</a></li>
-                    <% } %>
+                        <li> <a href="/">Welcome, <%= user.name %></a> </li>
+                        <% } else{ %>
+                            <li><a href="/">Home</a></li>
+                            <% } %>
 
-
-
-                    <li><a href="/teachers">Teachers</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Academics
+                                <li><a href="/teachers">Teachers</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Academics
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/resources">Resources</a></li>
-                            <li><a href="/notices/list">Notices</a></li>
-                            <li><a href="/fee-structure">Fee Structure & Uniform</a></li>
-                        </ul>
-                    </li>
-                    <!-- <li><a href="/gallery">Gallery</a></li> -->
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contacts">Contact Us</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Authentication
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/users/signup">Signup</a></li>
-                            <li><a href="/users/signin">Signin</a></li>
-                            <li><a href="/users/signout">Signout</a></li>
-                        </ul>
-                    </li>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/resources">Resources</a></li>
+                                        <li><a href="/notices/list">Notices</a></li>
+                                        <li><a href="/fee-structure">Fee Structure & Uniform</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/gallery">Gallery</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/contacts">Contact Us</a></li>
+
+                                <%# if(user){ %>
+                                    <!-- <li><a href="/users/signout">Signout</a></li> -->
+                                    <%# } else{ %>
+                                        <!-- <li><a href="/users/signin">Signin</a></li> -->
+                                        <%# } %>
                 </ul>
 
             </div>

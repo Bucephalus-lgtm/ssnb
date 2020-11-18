@@ -1,41 +1,30 @@
 const express = require('express');
 const { requireAuth } = require('../middleware/auth');
 const router = express.Router();
-// const expressJwt = require('express-jwt');
-// const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
-
-// const requireSignin = expressJwt({
-//     secret: process.env.JWT_SECRET,
-//     algorithms: ['HS256'],
-//     userProperty: 'auth'
-// });
-
-// const isAuth = function (req, res, next) {
-//     let user = req.profile && req.auth && req.profile._id == req.auth._id;
-//     if (!user) {
-//         return res.status(403).json({
-//             error: 'Access denied'
-//         });
-//     }
-//     console.log(req.profile);
-//     console.log(req.auth);
-//     next();
-// }
 
 const Resource = require('../models/resource');
 
-router.get('/', requireAuth, function (req, res) {
-    res.send('resources here');
+router.get('/', function(req, res) {
+    Resource.find(function(err, resources) {
+
+        const uniqueAray = [...new Set(resources.map(data => data.class_name))];
+        // console.log(uniqueAray);
+
+        res.render('resources/classes', {
+            resources: resources,
+            uniqueAray: uniqueAray
+        });
+    });
 });
 
-router.get('/:class_name', function (req, res) {
+router.get('/:class_name', function(req, res) {
 
     const cl_name = req.params.class_name;
     // console.log(cl_name);
-    Resource.find(function (err, resources) {
+    Resource.find(function(err, resources) {
 
         const arrBig = [];
-        resources.forEach(function (r) {
+        resources.forEach(function(r) {
             if (r.class_name == cl_name) {
                 const subjectArray = r.subjects[0];
                 const arr = [];
@@ -47,7 +36,7 @@ router.get('/:class_name', function (req, res) {
             }
         });
 
-        const uniqueSub = [... new Set(arrBig)];
+        const uniqueSub = [...new Set(arrBig)];
         console.log(uniqueSub);
 
         res.render('resources/subjects', {
@@ -60,17 +49,17 @@ router.get('/:class_name', function (req, res) {
     });
 });
 
-router.get('/:class_name/:sub_name', function (req, res) {
+router.get('/:class_name/:sub_name', function(req, res) {
     const sub_name = req.params.sub_name;
     const cl_name = req.params.class_name;
     // console.log(sub_name);
 
-    Resource.find(function (err, resources) {
+    Resource.find(function(err, resources) {
 
         const arrBig = [];
         const chapterNo = [];
         const chapterImage = [];
-        resources.forEach(function (r) {
+        resources.forEach(function(r) {
             if (r.class_name == cl_name && r.subjects[0].subject_name == sub_name) {
                 // const subjectArray = r.subjects[0];
                 // const arr = [];

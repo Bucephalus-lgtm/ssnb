@@ -12,8 +12,7 @@ const url = 'mongodb+srv://amare:amare@mycluster.0e2la.gcp.mongodb.net/ssnb?retr
 
 mongoose
     .connect(
-        url,
-        { useNewUrlParser: true, useUnifiedTopology: true }
+        url, { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
@@ -32,10 +31,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        var namespace = param.split('.')
-            , root = namespace.shift()
-            , formParam = root;
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.'),
+            root = namespace.shift(),
+            formParam = root;
 
         while (namespace.length) {
             formParam += '[' + namespace.shift() + ']';
@@ -47,7 +46,7 @@ app.use(expressValidator({
         };
     },
     customValidators: {
-        isImage: function (value, filename) {
+        isImage: function(value, filename) {
             var extension = (path.extname(filename)).toLowerCase();
             switch (extension) {
                 case '.jpg':
@@ -63,7 +62,7 @@ app.use(expressValidator({
             }
         },
 
-        isDocument: function (value, filename) {
+        isDocument: function(value, filename) {
             const extension = (path.extname(filename)).toLowerCase();
             switch (extension) {
                 case '.pdf':
@@ -94,6 +93,8 @@ const email = require('./routes/email');
 const gallery = require('./routes/gallery');
 const user = require('./routes/auth');
 const { checkUser } = require('./middleware/auth');
+const feeStructure = require('./routes/fee-structure');
+const allAdminLinks = require('./routes/admin-allowance');
 
 app.get('*', checkUser);
 
@@ -109,8 +110,10 @@ app.use('/resources', resources);
 app.use('/mails', email);
 app.use('/gallery', gallery);
 app.use('/users', user);
+app.use('/fee-structure', feeStructure);
+app.use('/admin', allAdminLinks);
 
 var PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
+app.listen(PORT, function() {
     console.log(`Server started on port ${PORT}`);
 });

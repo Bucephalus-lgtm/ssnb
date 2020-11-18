@@ -1,26 +1,28 @@
 <%- include('../layouts/header') %>
 
-<h1>All Resources Here</h1>
+    <h1>All Resources Here</h1>
 
-<div class="table-responsive">
-    <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-            </tr>
-        </thead>
+    <div class="table-responsive">
+        <table id="dtBasicExample" class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                </tr>
+            </thead>
 
-        <tbody>
+            <tbody>
 
-            <% uniqueAray.forEach(function(chap){ %>
-            <tr>
-                <td>
-                    <a href="/resources/<%= chap %>"><%= chap %> </a>
-                </td>
-            </tr>
-            <% }); %>
-        </tbody>
-    </table>
-</div>
+                <% uniqueAray.forEach(function(chap){ %>
+                    <tr>
+                        <td>
+                            <a href="/resources/<%= chap %>">
+                                <%= chap %>
+                            </a>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-<%- include('../layouts/footer') %>
+    <%- include('../layouts/footer') %>
