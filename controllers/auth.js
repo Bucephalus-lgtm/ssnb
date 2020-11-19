@@ -27,7 +27,10 @@ module.exports.signup_get = (req, res) => {
 module.exports.signup_post = (req, res) => {
     const { name, email, password } = req.body;
 
-    const fullUrl = req.protocol + '://' + req.get('host');
+    const fullUrl = req.protocol + '://'
+        // + req.hostname;
+        +
+        req.get('host');
     // console.log(fullUrl);
 
     User.findOne({ email }).exec((err, user) => {
@@ -117,7 +120,7 @@ module.exports.signin_post = async(req, res) => {
 
 module.exports.signout_get = (req, res) => {
     res.cookie('jwtauth', '', { maxAge: 1 });
-    res.redirect('/users/signup');
+    res.redirect('/users/signin');
 }
 
 module.exports.feeStructureGet = (req, res) => {

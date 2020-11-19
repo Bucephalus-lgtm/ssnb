@@ -12,14 +12,15 @@ module.exports.requireAuth = (req, res, next) => {
             } else {
                 console.log(decodedToken);
 
-                if (decodedToken.role === 1) {
-                    res.status(200).json('Hi, You are an admin! Congratulations!');
-                    console.log('You are an admin! Congratulations!');
-                    // next();
-                } else {
-                    res.send('You are a registered user!');
-                    // next();
-                }
+                // if (decodedToken.role === 1) {
+                //     res.status(200).json('Hi, You are an admin! Congratulations!');
+                //     console.log('You are an admin! Congratulations!');
+                //     // next();
+                // } else {
+                //     res.send('You are a registered user!');
+                //     // next();
+                // }
+                next();
             }
         });
         // console.log(req.cookies.jwtauth);
@@ -27,25 +28,25 @@ module.exports.requireAuth = (req, res, next) => {
     } else {
         res.redirect('/users/signin');
     }
-}  
+}
 
 module.exports.checkUser = (req, res, next) => {
     const token = req.cookies.jwtauth;
     // console.log(token);
     if (token) {
-      jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
-        if (err) {
-          res.locals.user = null;
-          next();
-        } else {
-          let user = await User.findById(decodedToken.id);
-        //   console.log(user);
-          res.locals.user = user;
-          next();
-        }
-      });
+        jwt.verify(token, process.env.JWT_SECRET_KEY, async(err, decodedToken) => {
+            if (err) {
+                res.locals.user = null;
+                next();
+            } else {
+                let user = await User.findById(decodedToken.id);
+                //   console.log(user);
+                res.locals.user = user;
+                next();
+            }
+        });
     } else {
-      res.locals.user = null;
-      next();
+        res.locals.user = null;
+        next();
     }
-  };
+};
