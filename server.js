@@ -5,14 +5,16 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const formidable = require('formidable');
 const expressValidator = require('express-validator');
+const mkdirp = require('mkdirp');
 
 // const url = 'mongodb://localhost/ssnb';
 const url = 'mongodb+srv://amare:amare@mycluster.0e2la.gcp.mongodb.net/ssnb?retryWrites=true&w=majority';
 
 mongoose
     .connect(
-        url, { useNewUrlParser: true, useUnifiedTopology: true }
+        url, { useNewUrlParser: true, useCreateIndex: false, useUnifiedTopology: true }
     )
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
@@ -95,6 +97,46 @@ const user = require('./routes/auth');
 const { checkUser } = require('./middleware/auth');
 const feeStructure = require('./routes/fee-structure');
 const allAdminLinks = require('./routes/admin-allowance');
+const adminGallery = require('./routes/admin_gallery');
+
+
+
+
+
+
+
+
+
+
+
+// app.get('/', (req, res) => {
+//     res.send(`
+//     <h2>With <code>"express"</code> npm package</h2>
+//     <form action="/api/upload" enctype="multipart/form-data" method="post">
+//       <div>Text field title: <input type="text" name="title" /></div>
+//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
+//       <input type="submit" value="Upload" />
+//     </form>
+//   `);
+// });
+
+// app.post('/api/upload', (req, res, next) => {
+//     const form = formidable({ multiples: true });
+
+//     form.parse(req, (err, fields, files) => {
+//         if (err) {
+//             next(err);
+//             console.log(err);
+//             return;
+//         }
+//         console.log(fields);
+//         console.log(files.someExpressFiles.path);
+//         console.log(files.someExpressFiles.type);
+//         res.json({ fields, files });
+//     });
+// });
+
+
 
 app.get('*', checkUser);
 
@@ -112,6 +154,7 @@ app.use('/gallery', gallery);
 app.use('/users', user);
 app.use('/fee-structure', feeStructure);
 app.use('/admin', allAdminLinks);
+app.use('/admin/gallery', adminGallery);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {

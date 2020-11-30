@@ -1,37 +1,46 @@
 const express = require('express');
 const router = express.Router();
-const sendMail = require('../routes/mail');
+const nodemailer = require('nodemailer');
 
 router.get('/', (req, res) => {
     res.render('mail');
 });
 
 router.post('/', (req, res) => {
-    const { subject, email, text } = req.body;
-    // console.log('Data: ', req.body);
-    console.log(subject);
-    console.log(email);
-    console.log(text);
-
-    sendMail(email, subject, text, function (err, data) {
-        if (err) {
-            console.log('ERROR: ', err);
-            return res.status(500).json({ message: err.message || 'Internal Error' });
+    const smtpTrans = nodemailer.createTransport({
+        service: 'gmail',
+        type: 'SMTP',
+        host: 'smtp.gmail.com',
+        secure: true,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
         }
-        console.log('Email sent!!!');
-        return res.json({ message: 'Email sent!!!!!' });
     });
-});
 
-router.get('/error', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'views', 'error.html'));
-    res.send('Some rror occured!');
-});
+    const mailOpts = {
+        from: 'bhargabnath691@gmail.com',
+        to: 'bhargabnath691@gmail.com, bhargabnath631@gmail.com, bhargab_ug@cse.nits.ac.in, bhargab_nath@yahoo.com',
+        subject: "Message from students",
+        html: `<h2> ${req.body.name} </h2>:
+         <p> ${req.body.message}</p>`
+    }
 
-// Email sent page
-router.get('/email/sent', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'views', 'emailMessage.html'));
-    res.send('Mail sent successfully!');
+    smtpTrans.sendMail(mailOpts, (error, response) => {
+        if (error) {
+            console.log(error);
+            // res.send('failed') // Show a page indicating failure
+            res.json({
+                msg: 'failed!',
+                error
+            });
+        } else {
+            // res.send('success') // Show a page indicating success
+            res.json({
+                msg: 'success!'
+            });
+        }
+    })
 });
 
 module.exports = router;
