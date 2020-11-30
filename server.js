@@ -19,7 +19,6 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-const sendMail = require('./routes/mail');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -91,7 +90,6 @@ const notice = require('./routes/notices');
 const adminNotices = require('./routes/admin_notices');
 const adminResources = require('./routes/admin_resources');
 const resources = require('./routes/resources');
-const email = require('./routes/email');
 const gallery = require('./routes/gallery');
 const user = require('./routes/auth');
 const { checkUser } = require('./middleware/auth');
@@ -103,14 +101,13 @@ app.get('*', checkUser);
 
 app.use('/', indexRoutes);
 app.use('/about', about);
-app.use('/contacts', contact);
+app.use('/contact', contact);
 app.use('/teachers', teacher);
 app.use('/admin/teachers', adminTeacher);
 app.use('/notices', notice);
 app.use('/admin/notices', adminNotices);
 app.use('/admin/resources', adminResources);
 app.use('/resources', resources);
-app.use('/mails', email);
 app.use('/gallery', gallery);
 app.use('/users', user);
 app.use('/fee-structure', feeStructure);
