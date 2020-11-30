@@ -99,45 +99,6 @@ const feeStructure = require('./routes/fee-structure');
 const allAdminLinks = require('./routes/admin-allowance');
 const adminGallery = require('./routes/admin_gallery');
 
-
-
-
-
-
-
-
-
-
-
-// app.get('/', (req, res) => {
-//     res.send(`
-//     <h2>With <code>"express"</code> npm package</h2>
-//     <form action="/api/upload" enctype="multipart/form-data" method="post">
-//       <div>Text field title: <input type="text" name="title" /></div>
-//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
-//       <input type="submit" value="Upload" />
-//     </form>
-//   `);
-// });
-
-// app.post('/api/upload', (req, res, next) => {
-//     const form = formidable({ multiples: true });
-
-//     form.parse(req, (err, fields, files) => {
-//         if (err) {
-//             next(err);
-//             console.log(err);
-//             return;
-//         }
-//         console.log(fields);
-//         console.log(files.someExpressFiles.path);
-//         console.log(files.someExpressFiles.type);
-//         res.json({ fields, files });
-//     });
-// });
-
-
-
 app.get('*', checkUser);
 
 app.use('/', indexRoutes);
