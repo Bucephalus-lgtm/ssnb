@@ -1,37 +1,20 @@
-<%- include('layouts/header') %>
+<!DOCTYPE html>
+<html lang="en">
 
-<h3>Notice</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSNB</title>
+</head>
 
-<!-- <div>
-    <object
-      data='/notices/5f99391328c24e081ce11937/3.pdf'
-      type="application/pdf"
-      width="500px"
-      height="500px"
-    >
+<body>
+    <h3>Notice</h3>
 
-      <iframe
-        src='/notices/5f99391328c24e081ce11937/3.pdf'
-        width="500px"
-        height="500px"
-      >
-      <p>This browser does not support PDF!</p>
-      </iframe>
+    <form method="POST" action="/api/notice/create">
+        <input type="text" name="name" placeholder="Name">
+        <input type="file" name="photo" placeholder="Photo" id="">
+        <button>Send</button>
+    </form>
+</body>
 
-    </object>
-  </div> -->
-<!-- 
-  <div class="container" style="padding: 20px;">
-      <embed src="/notices/5f99391328c24e081ce11937/3.pdf" type="application/pdf" width="100%" height="600px">
-  </div> -->
-
-<% notices.forEach(function(notice) { %>
-
-<a href="/notices/<%= notice._id %>/<%= notice.title %>.pdf ">
-    <strong>
-        <%= notice.title %>
-    </strong>
-</a>
-<%  }); %>
-
-<%- include('layouts/footer') %>
+</html>

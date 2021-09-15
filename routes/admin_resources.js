@@ -12,9 +12,9 @@ router.get('/add-resource', function (req, res) {
 });
 
 router.post('/add-resource', function (req, res) {
-    if (req.files) {
-        console.log(req.files);
-    }
+    // if (req.files) {
+    //     console.log(req.files);
+    // }
 
     const imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
     const file = typeof req.files.file !== 'undefined' ? req.files.file.name : '';

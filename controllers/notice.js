@@ -1,48 +1,67 @@
+const formidable = require('formidable');
+const fs = require('fs-extra');
 const Notice = require('../models/notice');
 
-// exports.list = function(req, res) {
-//     Notice.find({}).exec(function(err, notices) {
-//         res.render('notices', {
-//             notices: notices,
-//         });
-//     });
-// }
+exports.productById = (req, res, next, id) => {
+    Notice.findById(id)
+        .exec((err, product) => {
+            if (err || !product) {
+                return res.status(400).json({
+                    error: 'Product not found'
+                });
+            }
+            req.product = product;
+            next();
+        });
+};
 
-exports.productById = function (req, res, next, id) {
-    Product.findById(id).populate('category').exec(function (err, product) {
-        if (err || !product) {
+exports.read = (req, res) => {
+    req.product.photo = undefined;
+    return res.json(req.product);
+};
+
+exports.create = (req, res) => {
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
             return res.status(400).json({
-                error: 'Product not found'
+                error: 'Image could not be uploaded'
             });
         }
-        req.product = product;
-        next();
+        // check for all fields
+        const { name } = fields;
+
+        if (!name) {
+            return res.status(400).json({
+                error: 'All fields are required'
+            });
+        }
+
+        let product = new Notice(fields);
+
+        if (files.photo) {
+
+            product.photo.data = fs.readFileSync(files.photo.path);
+            product.photo.contentType = files.photo.type;
+        }
+
+        product.save((err, result) => {
+            if (err) {
+                console.log('PRODUCT CREATE ERROR ', err);
+                return res.status(400).json({
+                    err
+                });
+            }
+            res.json(result);
+        });
     });
 };
 
-exports.getNoticeById = (req, res, next, id) => {
-    Notice.findById(id).exec((err, notice) => {
-        if (err || !notice) {
-            return res.status(400).json({
-                error: 'Notice not found!'
-            });
-        }
-        req.notice = notice;
-        next();
-    });
-}
-
-exports.readNoticeById = (req, res, next) => {
-    // if (req.notice) {
-    //     console.log('Notice: ', req.notice);
-    // } else {
-    //     console.log('ok');
-    // }
-    if (req.notice) {
-        res.set('Content-Type', 'application/pdf');
-        return res.send(req.notice.file);
+exports.photo = (req, res, next) => {
+    if (req.product.photo.data) {
+        res.set('Content-Type', req.product.photo.contentType);
+        return res.send(req.product.photo.data);
     }
     next();
-
-    // 5fb59173ff1fc60017c33547
-}
+};

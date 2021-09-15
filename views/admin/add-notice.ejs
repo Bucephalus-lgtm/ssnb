@@ -1,22 +1,22 @@
 <%- include('../layouts/header') %>
 
-<h2 class="page-title">Add a new notice</h2>
-<a href="admin/notices/list" class="btn btn-primary">Back to all notices</a>
-<br><br>
+    <h2 class="page-title">Add a new notice</h2>
+    <a href="admin/notices/list" class="btn btn-primary">Back to all notices</a>
+    <br><br>
 
-<form method="POST" action="/admin/notices/add-notice" enctype="multipart/form-data">
-    
-    <div class="form-group">
-        <label for="">Title</label>
-        <input type="text" class="form-control" name="title"  placeholder="Title of the notice">
-    </div>
+    <form method="POST" action="/admin/notices/add-notice" enctype="multipart/form-data">
 
-    <div class="form-group">
-        <label for="">File</label>
-        <input type="file" class="form-control" name="notice" id="img">
-    </div>
+        <div class="form-group">
+            <label for="">Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Title of the notice">
+        </div>
 
-    <button class="btn btn-info">Submit</button>
-</form>
+        <div class="form-group">
+            <label for="">File</label>
+            <input type="file" class="form-control" name="notice" id="img">
+        </div>
 
-<%- include('../layouts/footer') %>
+        <button class="btn btn-info">Submit</button>
+    </form>
+
+    <%- include('../layouts/footer') %>

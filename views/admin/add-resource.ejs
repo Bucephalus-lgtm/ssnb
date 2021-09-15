@@ -1,12 +1,12 @@
 <%- include('../layouts/header') %>
 
-<h1>Add Resources Here</h1>
+    <h1>Add Resources Here</h1>
 
-<form method="POST" action="/admin/resources/add-resource" enctype="multipart/form-data">
+    <form method="POST" action="/admin/resources/add-resource" enctype="multipart/form-data">
 
-    <div class="form-group my-10">
-        <label for="">Choose Class</label>
-        <select class="form-control" name="class_name">
+        <div class="form-group my-10">
+            <label for="">Choose Class</label>
+            <select class="form-control" name="class_name">
             <option value="class 1">Class One</option>
             <option value="class 2">Class Two</option>
             <option value="class 3">Class Three</option>
@@ -18,15 +18,15 @@
             <option value="class 9">Class Nine</option>
             <option value="class 10">Class Ten</option>
         </select>
-    </div>
+        </div>
 
-    <!-- <div class="form-group">
+        <!-- <div class="form-group">
         <input type="hidden" class="form-control" name="class_slug" value="" placeholder="Class Slug">
     </div> -->
 
-    <div class="form-group my-10">
-        <label for="">Choose Subject</label>
-        <select class="form-control" name="subject_name">
+        <div class="form-group my-10">
+            <label for="">Choose Subject</label>
+            <select class="form-control" name="subject_name">
             <option value="MIL">MIL</option>
             <option value="English">English</option>
             <option value="Hindi">Hindi</option>
@@ -36,48 +36,48 @@
             <option value="English Grammer">English Grammer</option>
             <option value="Advance Mathematics">Advance Mathematics</option>
         </select>
-    </div>
+        </div>
 
-    <div class="form-group">
-        <label for="">Chapter No</label>
-        <input type="text" class="form-control" name="chapter_no" value="" placeholder="Chapter No">
-    </div>
+        <div class="form-group">
+            <label for="">Chapter No</label>
+            <input type="text" class="form-control" name="chapter_no" value="" placeholder="Chapter No">
+        </div>
 
-    <div class="form-group">
-        <label for="">Chapter Name</label>
-        <input type="text" class="form-control" name="chapter_name" value="" placeholder="Chapter Name">
-    </div>
+        <div class="form-group">
+            <label for="">Chapter Name</label>
+            <input type="text" class="form-control" name="chapter_name" value="" placeholder="Chapter Name">
+        </div>
 
-    <label for="">Upload your file</label>
-    <div class="m-5 pb-5 bg-info">
-        <Select class="form-control" id='docOrImageSelector'>
+        <label for="">Upload your file</label>
+        <div class="m-5 pb-5 bg-info">
+            <Select class="form-control" id='docOrImageSelector'>
             <option value="">Choose Option</option>
             <option value="image">Image</option>
             <option value="document">Document</option>
         </Select>
-    </div>
-
-
-    <div id="image" class="files" style="display:none">
-        <div class="form-group">
-            <label for="">Notes</label>
-            <input type="file" class="form-control" name="image">
-        </div>
-    </div>
-
-    <div id="document" class="files" style="display:none">
-        <div class="form-group">
-            <label for="">File Name</label>
-            <input type="text" class="form-control" name="fileName" placeholder="File Name">
         </div>
 
-        <div class="form-group">
-            <label for="">File</label>
-            <input type="file" class="form-control" name="file">
-        </div>
-    </div>
 
-    <!-- <div class="form-group">
+        <div id="image" class="files" style="display:none">
+            <div class="form-group">
+                <label for="">Notes</label>
+                <input type="file" class="form-control" name="image">
+            </div>
+        </div>
+
+        <div id="document" class="files" style="display:none">
+            <div class="form-group">
+                <label for="">File Name</label>
+                <input type="text" class="form-control" name="fileName" placeholder="File Name">
+            </div>
+
+            <div class="form-group">
+                <label for="">File</label>
+                <input type="file" class="form-control" name="file">
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
         <label for="">Notes</label>
         <input type="file" class="form-control" name="image">
     </div>
@@ -92,16 +92,16 @@
         <input type="file" class="form-control" name="file">
     </div> -->
 
-    <button class="btn btn-success m-5 pb-5">Submit</button>
-</form>
+        <button class="btn btn-success m-5 pb-5">Submit</button>
+    </form>
 
-<script type="text/javascript">
-    $(function () {
-        $('#docOrImageSelector').change(function () {
-            $('.files').hide();
-            $('#' + $(this).val()).show();
+    <script type="text/javascript">
+        $(function() {
+            $('#docOrImageSelector').change(function() {
+                $('.files').hide();
+                $('#' + $(this).val()).show();
+            });
         });
-    });
-</script>
+    </script>
 
-<%- include('../layouts/footer') %>
+    <%- include('../layouts/footer') %>

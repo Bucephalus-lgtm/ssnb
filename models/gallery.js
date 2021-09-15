@@ -1,13 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const GallerySchema = mongoose.Schema({
+const GallerySchema = new mongoose.Schema({
     name: {
-        type: String
+        type: String,
+        trim: true,
+        required: true,
+        maxlength: 32
     },
-    gallery_photo: {
+    photo: {
         data: Buffer,
         contentType: String
-    },
+    }
 }, { timestamps: true });
 
-const Gallery = module.exports = mongoose.model('Gallery', GallerySchema);
+module.exports = mongoose.model("Gallery", GallerySchema);

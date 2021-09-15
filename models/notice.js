@@ -1,19 +1,16 @@
-const mongoose = require('mongoose');
-const express = require('express');
+const mongoose = require("mongoose");
 
-const NoticeSchema = mongoose.Schema({
-    title: {
+const noticeSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required: true
-    }, 
-    file: {
-        type: String,
-        required: true
+        trim: true,
+        required: true,
+        maxlength: 32
     },
-    date:{
-        type: Date,
-        default: Date.now
+    photo: {
+        data: Buffer,
+        contentType: String
     }
-});
+}, { timestamps: true });
 
-const Notice = module.exports = mongoose.model('Notice', NoticeSchema);
+module.exports = mongoose.model("Notice", noticeSchema);

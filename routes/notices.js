@@ -1,19 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Notice = require('../models/notice');
-// const { requireAuth } = require('../middleware/auth');
-const { getNoticeById, readNoticeById } = require('../controllers/notice');
 
-router.get('/list', function(req, res) {
-    Notice.find({}).exec(function(err, notices) {
-        res.render('notices', {
-            notices: notices,
-        });
-    });
-});
+const {
+    create,
+    productById,
+    read,
+    photo
+} = require('../controllers/notice');
 
-router.get('/:noticeId', readNoticeById);
+router.get('/', (req, res) => res.send('TEST PASSED!'));
+// router.get("/product/:productId", read);
+router.get("/notice/create", (req, res) => res.render('notices'));
+router.post("/notice/create", create);
 
-router.param('noticeId', getNoticeById);
+router.get("/product/photo/:productId", photo);
+
+// router.param("productId", productById);
 
 module.exports = router;
