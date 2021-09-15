@@ -6,7 +6,6 @@ const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    // service: 'gmail',
     auth: {
         user: 'medicalreporthelp@gmail.com',
         pass: process.env.MAIL_PASSWORD
@@ -31,7 +30,6 @@ module.exports.signup_post = (req, res) => {
         // + req.hostname;
         +
         req.get('host');
-    // console.log(fullUrl);
 
     User.findOne({ email }).exec((err, user) => {
         if (user) {
@@ -41,20 +39,21 @@ module.exports.signup_post = (req, res) => {
         }
 
         const token = jwt.sign({ name, email, password }, process.env.JWT_SECRET_KEY, { expiresIn: '10m' });
-        // console.log(token);
+        console.log(token);
 
         const mailOptions = {
-            from: 'ssnbhelp@protonmail.com',
+            from: 'medicalreporthelp@gmail.com',
             to: email,
             subject: 'Account activation link',
             html:
-            // `<h3>Please <a href="http://localhost:5000/api/authentication/activate/${token}">click</a> here to activate your account.
-            //         `
+                // `<h3>Please <a href="http://localhost:5000/api/authentication/activate/${token}">click</a> here to activate your account.
+                //         `
                 `<h3>Please <a href="${fullUrl}/users/authentication/activate/${token}">click</a> here to activate your account.
                         `
         };
 
-        transporter.sendMail(mailOptions, function(error, info) {
+        console.log({ mailOptions });
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 // console.log(error);
                 return res.status(400).json({
@@ -104,7 +103,7 @@ module.exports.signin_get = (req, res) => {
     res.render('signin');
 }
 
-module.exports.signin_post = async(req, res) => {
+module.exports.signin_post = async (req, res) => {
     const { email, password } = req.body;
 
     try {
